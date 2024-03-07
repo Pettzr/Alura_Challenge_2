@@ -1,4 +1,4 @@
-const categoriaArgs = require('../utils/categoriaErroMsg')
+const categoriaArgs = require('../utils/categoriaErroMsgUtils')
 
 module.exports = (Sequelize ,sequelize, DataTypes) => {
 
