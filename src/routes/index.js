@@ -1,13 +1,13 @@
 const express = require('express');
 const receitas = require('./receitasRoute.js');
 const despesas = require('./despesasRoute.js');
-const resumo = require('./resumoRoute.js')
+const middleware = require('./middlewareRoute.js')
 
 module.exports = app => {
     app.use(
         express.json(),
         receitas,
         despesas,
-        resumo
+        middleware
     );
 };
