@@ -2,55 +2,55 @@ const { Op, Sequelize } = require('sequelize');
 const dataSource = require('../models');
 
 class Services {
-    constructor(nomeDoModel){
-        this.nomeDoModel = nomeDoModel;
+    constructor(modelName){
+        this.modelName = modelName;
     }
 
     async getAllElementsService(){
-        return await dataSource[this.nomeDoModel].findAll();
+        return await dataSource[this.modelName].findAll();
     }
 
     async getIdElementService(idElement){
-        return await dataSource[this.nomeDoModel].findByPk(idElement);
+        return await dataSource[this.modelName].findByPk(idElement);
     }
 
-    async getQueryDescricaoElementService(queryDescricao) {
-        return await dataSource[this.nomeDoModel].findAll({
+    async getQueryDescriptionElementService(queryDescricao) {
+        return await dataSource[this.modelName].findAll({
             where: {
-                descricao: {
-                    [Op.like]: `%${queryDescricao}%`
+                description: {
+                    [Op.like]: `%${queryDescription}%`
                 }
             }
         });
     }
 
-    async getElementByDateService(ano, mes) {
-        return await dataSource[this.nomeDoModel].findAll({
+    async getElementByDateService(year, month) {
+        return await dataSource[this.modelName].findAll({
             where: Sequelize.where(
-                Sequelize.fn('strftime', '%Y-%m', Sequelize.col('data')),
-                `${ano}-${mes.toString().padStart(2, '0')}`
+                Sequelize.fn('strftime', '%Y-%m', Sequelize.col('date')),
+                `${year}-${month.toString().padStart(2, '0')}`
             )
         });
     }
 
     async postElementService(elementData){
-        return await dataSource[this.nomeDoModel].create(elementData);
+        return await dataSource[this.modelName].create(elementData);
     }
 
 
     async putIdElementService(idElement, elementData){
-         await dataSource[this.nomeDoModel].update(elementData, {
+         await dataSource[this.modelName].update(elementData, {
             where: {
                 id: idElement
             }
         });
-        const updatedElement = await dataSource[this.nomeDoModel].findByPk(idElement)
+        const updatedElement = await dataSource[this.modelName].findByPk(idElement)
         return updatedElement;
 
     }
 
     async deleteIdElementService(idElement){
-        return await dataSource[this.nomeDoModel].destroy({
+        return await dataSource[this.modelName].destroy({
             where: {
                 id: idElement
             }

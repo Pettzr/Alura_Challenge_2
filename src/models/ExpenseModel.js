@@ -1,41 +1,41 @@
-const categoriaArgs = require('../utils/categoriaErroMsgUtils')
+const categorieArgs = require('../utils/categorieErrorMsgUtils')
 
 module.exports = (Sequelize ,sequelize, DataTypes) => {
 
-    const categorias = ['Alimentação', 'Saúde', 'Moradia', 'Transporte', 'Educação', 'Lazer', 'Imprevistos', 'Outras']
+    const categories = ['Alimentação', 'Saúde', 'Moradia', 'Transporte', 'Educação', 'Lazer', 'Imprevistos', 'Outras']
 
-    const Despesa = sequelize.define('despesas', {
+    const Expense = sequelize.define('expenses', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },
-        descricao: {
+        description: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        valor: {
+        value: {
             type: DataTypes.DECIMAL(5, 2),
             allowNull: false
         },
-        data: {
+        date: {
             type: DataTypes.DATEONLY,
             defaultValue: Sequelize.NOW,
             allowNull: false
         },
-        categoria: {
+        categorie: {
             type: DataTypes.ENUM,
-            values: categorias,
+            values: categories,
             defaultValue: 'Outras',
             allowNull: false,
             validate: {
                 isIn: {
-                    args: [categorias],
-                    msg: categoriaArgs(categorias)
+                    args: [categories],
+                    msg: categorieArgs(categories)
                 }
             }
         }
     });
-        return Despesa;
+        return Expense;
 };

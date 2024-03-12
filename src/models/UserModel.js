@@ -18,7 +18,7 @@ const User = sequelize.define('users', {
 
     User.createDefaultUser = async function () {
         try {
-            const hashedPassword = await bcrypt.hash('senha', 10); // Hash da senha
+            const hashedPassword = await bcrypt.hash('senha', 10);
             await User.create({
                 username: 'usuario',
                 password: hashedPassword,

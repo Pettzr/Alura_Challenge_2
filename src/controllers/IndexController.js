@@ -5,9 +5,9 @@ class Controller {
 
     async getElementsController( req, res) {
         try {
-            const query = req.query.descricao;
+            const query = req.query.description;
             if (query) {
-                const data = await this.model.getQueryDescricaoElementService(query);
+                const data = await this.model.getQueryDescriptionElementService(query);
                 return res.status(200).json(data);
             } else {
                 const data = await this.model.getAllElementsService();
@@ -31,9 +31,9 @@ class Controller {
     }
 
     async getElementByDateController( req, res) {
-        const { ano, mes } = req.params;
+        const { year, month } = req.params;
         try {
-            const data = await this.model.getElementByDateService(ano, mes);
+            const data = await this.model.getElementByDateService(year, month);
             return res.status(200).json(data);
         } catch (error) {
             return res.status(400).json({ error: error.message });

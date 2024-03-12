@@ -1,16 +1,16 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize('sqlite:database.sqlite');
 
-const Despesa = require('./DespesaModel')(Sequelize, sequelize, DataTypes);
-const Receita = require('./ReceitaModel')(Sequelize ,sequelize, DataTypes);
-const User = require('./UsuarioModel');
+const Expense = require('./ExpenseModel')(Sequelize, sequelize, DataTypes);
+const Revenue = require('./RevenueModel')(Sequelize ,sequelize, DataTypes);
+const User = require('./UserModel');
 
-Despesa.sync( { force: false } );
-Receita.sync( { force: false } );
+Expense.sync( { force: false } );
+Revenue.sync( { force: false } );
 User.sync( { force: true } );
 
 module.exports = {
-    Despesa,
-    Receita,
+    Expense,
+    Revenue,
     User
 }

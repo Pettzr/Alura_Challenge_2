@@ -1,24 +1,24 @@
 module.exports = (Sequelize, sequelize, DataTypes) => {
-    const Receita = sequelize.define('receitas', {
+    const Revenue = sequelize.define('revenues', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true,
         },
-        descricao: {
+        description: {
             type: DataTypes.TEXT,
             allowNull: false
         },
-        valor: {
+        value: {
             type: DataTypes.DECIMAL(5, 2),
             allowNull: false
         },
-        data: {
+        date: {
             type: DataTypes.DATEONLY,
             defaultValue: Sequelize.NOW,
             allowNull: false
         }
     });
-    return Receita;
+    return Revenue;
 };
